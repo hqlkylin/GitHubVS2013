@@ -159,6 +159,7 @@
     <Content Include="Html\move2.html" />
     <Content Include="Html\opacityImg.html" />
     <Content Include="Html\opp.html" />
+    <Content Include="Html\oppdrag.html" />
     <Content Include="Html\oppdrag1.html" />
     <Content Include="Html\oppTab.html" />
     <Content Include="Html\oppTab1.html" />
