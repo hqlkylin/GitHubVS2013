@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <style>
+
+        input {border:1px solid #4cff00}
+        input.active { background: #ff0000; border: 1px solid #4cff00; }
+        #div1 div { display:none; width:300px; height:200px; background:#808080}
+    </style>
+    <script>
+
+        window.onload = function ()
+        {
+            var oDiv = document.getElementById("div1");
+            var oBtn = oDiv.getElementsByTagName("input");
+            var oBody = oDiv.getElementsByTagName("div");
+            for (var i = 0; i < oBtn.length; i++)
+            {
+                oBtn[i].index = i;
+                oBtn[i].onclick = function ()
+                {
+                    for (var i = 0; i < oBtn.length; i++)
+                    {
+                        oBtn[i].className = '';
+                        oBody[i].style.display = "none";
+                    }
+                    this.className = "active";
+                    oBody[this.index].style.display = "block";
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <input class="active" type="button" value="tab1" />
+        <input type="button" value="tab2" />
+        <input type="button" value="tab3" />
+
+        <div style="display:block">1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</body>
+</html>

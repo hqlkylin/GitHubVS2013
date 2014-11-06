@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../Scripts/move2.js"></script>
+    <style>
+        * { margin:0; padding:0px;}
+        img { display: block; }
+        #box { position: relative; margin: 0 auto; width: 400px; overflow: hidden; height:320px; }
+        li { list-style:none; margin:0px; padding:0px;}
+        ul { position: absolute;top:0px;}
+        /*ul li { }*/
+        ol { position: absolute; bottom: 0px; right: 0px; z-index: 100; }
+            ol li { float: left; margin-right: 3px; display: inline; cursor: pointer; background: #fcf2cf; border: 1px solid #f47500; padding: 2px 6px; color: #d94b01; font-family: arial; font-size: 12px; }
+                ol li.active { padding: 3px 8px; font-weight: bold; color: #ffffff; background: #ffb442; position: relative; bottom: 2px; }
+    </style>
+    <script>
+
+        window.onload = function ()
+        {
+            var oBox = document.getElementById("box");
+            var oli = oBox.getElementsByTagName("ol")[0].getElementsByTagName("li");
+            var ul = oBox.getElementsByTagName("ul")[0];
+            var now = 0;
+            function tab()
+            {
+                for (var i = 0; i < oli.length; i++)
+                {
+                    oli[i].className = "";
+                }
+                oli[now].className = "active";
+
+                startMove(ul, { top: -now * 320 });
+            }
+
+            for (var i = 0; i < oli.length; i++)
+            {
+                oli[i].index = i;
+             
+                oli[i].onclick = function ()
+                {
+                    now = this.index;
+                    tab();
+                }
+            }
+
+            function next()
+            {
+                now++;
+                if (now == oli.length)
+                {
+                    now = 0;
+                   
+                }
+                tab();
+            }
+
+            var timer = setInterval(next, 2000);
+            
+            oBox.onmouseover = function ()
+            {
+                clearInterval(timer);
+            }
+            oBox.onmouseout = function ()
+            {
+                timer = setInterval(next, 2000);
+            }
+        }
+
+       
+    </script>
+</head>
+<body>
+    <div id="box">
+        <ol>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+     
+        <ul style="">
+            <li><img src="../images/1.jpg" /></li>
+            <li><img src="../images/2.jpg" /></li>
+            <li><img src="../images/3.jpg" /></li>
+            <li><img src="../images/4.jpg" /></li>
+            <li><img src="../images/5.jpg" /></li>
+        </ul>
+
+    </div>
+</body>
+</html>

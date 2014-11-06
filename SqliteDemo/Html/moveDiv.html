@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../Scripts/move2.js"></script>
+    <script>
+        window.onload = function ()
+        {
+            var oDiv = document.getElementById("div1");
+            var oBox = document.getElementById("box");
+     
+            oDiv.onmousedown = function (ev)
+            {
+             
+            
+                var oEvent = window.event || ev;
+                var pos = getPos(oEvent);
+                var disx =pos.x - oDiv.offsetLeft;
+                var dixy = pos.y - oDiv.offsetTop;
+
+                var coverDiv = document.createElement("div");
+                coverDiv.className = "cover";
+                coverDiv.style.width = oDiv.offsetWidth-2 + "px";
+                coverDiv.style.height = oDiv.offsetHeight-2 + "px";
+                coverDiv.style.left = oDiv.offsetLeft + "px";
+                coverDiv.style.top = oDiv.offsetTop + "px";
+
+                oBox.appendChild(coverDiv);
+
+                 document.onmousemove = function (ev)
+                 {
+                         var oEvent = window.event || ev;
+                         var pos = getPos(oEvent);
+                         
+                         var l=pos.x - disx;
+                         var t=pos.y - dixy ;
+                         if(l<50){
+                             l=0;
+                         }
+                         if(t<50){
+                             t=0;
+                         }
+                         if (l > oBox.offsetWidth - oDiv.offsetWidth-50)
+                         {
+                             l = oBox.offsetWidth - oDiv.offsetWidth;
+                         }
+                         if (t > oBox.offsetHeight - oDiv.offsetHeight-50)
+                         {
+                             t = oBox.offsetHeight - oDiv.offsetHeight;
+                         }
+                         coverDiv.style.left = l + "px";
+                         coverDiv.style.top = t + "px";
+                 
+                 }
+                 document.onmouseup = function ()
+                 {
+                     oDiv.style.left = coverDiv.offsetLeft + "px";
+                     oDiv.style.top = coverDiv.offsetTop + "px";
+
+                     oBox.removeChild(coverDiv);
+                     document.onmousemove = null;
+                     document.onmouseup = null;
+                 }
+                 return false;
+            }
+        }
+    </script>
+    <style>
+
+      
+        #div1 { width: 400px; height: 300px; position:absolute; background: #4cff00; }
+        #box { position: absolute; background: #808080; width: 1200px; height: 800px; }
+        .cover { border: 1px dashed #000; position: absolute; }
+    </style>
+</head>
+<body>
+    <div id="box">
+        absjskdjkjfsjdf<br />
+        sklkskflksld
+        <div id="div1">
+            <ul>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>

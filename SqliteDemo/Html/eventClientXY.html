@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script>
+        window.onload = function ()
+        {
+            var oDiv = document.getElementById("div1");
+
+            function getPos(event)
+            {
+
+                var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                
+                return { x: scrollLeft + event.clientX, y: scrollTop + event.clientY };
+            }
+            
+            document.onmousemove=function(ev){
+
+              
+                var oEvent=window.event || ev;
+                  
+                var pos=getPos(oEvent);
+                oDiv.style.left = pos.x+ "px";
+                oDiv.style.top = pos.y + "px";
+            }
+            
+        }
+    </script>
+    <style>
+        body { height:2000px;}
+        div { width: 400px; height: 300px;position:absolute;  background: #4cff00; }
+    </style>
+</head>
+<body>
+
+    <div id="div1">
+        222
+    </div>
+
+</body>
+</html>

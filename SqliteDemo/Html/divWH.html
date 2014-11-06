@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        * { margin: 0; padding: 0; }
+        div { background-color: red; width: 100px; height: 50px; margin: 0; padding: 0; margin: 20px;  border:20px solid red; opacity:0.3}
+    </style>
+    <script>
+
+
+
+        function getStyle(obj, name) {
+            if (obj.currentStyle) {
+                return obj.currentStyle[name];
+            } else {
+                return getComputedStyle(obj, false)[name];
+            }
+        }
+
+        function startMove(obj, attr, iTarget) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var cur = null;
+                if (attr == "opacity") {
+                    cur =Math.round(parseFloat(getStyle(obj, attr)) * 100);
+                    console.info(cur);
+                } else {
+                    cur = parseInt(getStyle(obj, attr));
+                }
+                obj.speed = (iTarget - cur) / 6;
+                obj.speed = obj.speed > 0 ? Math.ceil(obj.speed) : Math.floor(obj.speed);
+                if (iTarget == cur) {
+                    clearInterval(obj.timer);
+                } else {
+                    if (attr == "opacity") {
+                        obj.style.filter = "alpha(opacity:" + (cur + obj.speed) + ")";
+                        obj.style.opacity = (cur + obj.speed) / 100;
+                    } else {
+                        obj.style[attr] = cur + obj.speed + "px";
+                    }
+                }
+            }, 30);
+        }
+
+        window.onload = function () {
+            var oDiv = document.getElementsByTagName("div");
+            for (var i = 0; i < oDiv.length; i++) {
+                oDiv[i].onmouseover = function () {
+                    startMove(this, "opacity", 100);
+                }
+                oDiv[i].onmouseout = function () {
+                    startMove(this, "opacity", 30);
+                }
+            }
+        
+        }
+    </script>
+</head>
+<body>
+
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+</body>
+</html>

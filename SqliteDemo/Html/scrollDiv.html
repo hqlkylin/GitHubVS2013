@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="../Scripts/move2.js"></script>
+    <script>
+        window.onload = function ()
+        {
+            var oDiv = document.getElementById("div1");
+            var oDiv2 = document.getElementById("div2");
+            var oBox = document.getElementById("box");
+
+            oDiv.onmousedown = function (ev)
+            {
+
+
+                var oEvent = window.event || ev;
+                var pos = getPos(oEvent);
+                var disx = pos.x - oDiv.offsetLeft;
+                var dixy = pos.y - oDiv.offsetTop;
+
+            
+
+                document.onmousemove = function (ev)
+                {
+                    var oEvent = window.event || ev;
+                    var pos = getPos(oEvent);
+
+                    var l = pos.x - disx;
+                    var t = pos.y - dixy;
+                    if (l <0)
+                    {
+                        l = 0;
+                    }
+                    if (t <0)
+                    {
+                        t = 0;
+                    }
+                    if (l > oBox.offsetWidth - oDiv.offsetWidth)
+                    {
+                        l = oBox.offsetWidth - oDiv.offsetWidth;
+                    }
+                    if (t > oBox.offsetHeight - oDiv.offsetHeight)
+                    {
+                        t = oBox.offsetHeight - oDiv.offsetHeight;
+                    }
+                    oDiv.style.left = l + "px";
+                    oDiv.style.top = t + "px";
+                    var scale = (l-oDiv.offsetWidth) / 820;
+                    document.title = scale;
+                    oDiv2.style.width = 820 * scale + "px";
+                    oDiv2.style.height = 820 * scale + "px";
+                  
+                }
+                document.onmouseup = function ()
+                {
+                   
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+                return false;
+            }
+        }
+    </script>
+    <style>
+      
+        #box { position: absolute; background: #808080; width: 820px; height: 30px; }
+        #div1 { width: 20px; height: 30px; position: absolute; background: #4cff00; }
+        #div2 {  background: #ff0000; }
+        
+    </style>
+</head>
+<body>
+    <div id="box">
+      
+        <div id="div1">
+         
+        </div>
+
+    </div>
+    <div id="div2"></div>
+</body>
+</html>

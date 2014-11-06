@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script>
+        window.onload = function ()
+        {
+            new DragDiv("div1");
+            new DragDiv("div2");
+            new LimitDiv("div3");
+        }
+
+
+        function DragDiv(id)
+        {
+            
+            this.oDiv = document.getElementById(id);
+            this.disx = 0;
+            this.disy = 0;
+            var _that = this;
+            this.mousedown = function (ev)
+            {
+                //console.info(DragDiv.prototype.count);
+                var oEvent = ev || event;
+                this.disx = oEvent.clientX - this.oDiv.offsetLeft;
+                this.disy = oEvent.clientY - this.oDiv.offsetTop;
+                this.oDiv.style.zIndex = ++DragDiv.prototype.count;
+                document.onmousemove = function (ev)
+                {
+                    _that.mousemove(ev);
+                }
+                document.onmouseup = function ()
+                {
+                    _that.mouseup();
+                }
+                return false;
+            }
+            this.mousemove = function (ev)
+            {
+                var oEvent = ev || event;
+                this.oDiv.style.left = oEvent.clientX - this.disx + "px";
+                this.oDiv.style.top = oEvent.clientY - this.disy + "px";
+            }
+            this.mouseup = function ()
+            {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            }
+            this.oDiv.onmousedown = function (ev)
+            {
+                _that.mousedown(ev);
+            }
+           
+        }
+        DragDiv.prototype.count = 10;
+
+
+        function LimitDiv(id)
+        {
+            var _that = this;
+            DragDiv.call(this, id);
+            for (var p in DragDiv.prototype)
+            {
+                LimitDiv.prototype[p] = DragDiv.prototype[p];
+            }
+            this.mousemove = function (ev)
+            {
+
+                var oEvent = ev || event;
+                var l = oEvent.clientX - this.disx;
+                var t = oEvent.clientY - this.disy;
+                if (l < 0)
+                {
+                    l = 0;
+                }
+                else if (l>document.documentElement.clientWidth-this.oDiv.offsetWidth)
+                {
+
+                    l = document.documentElement.clientWidth - this.oDiv.offsetWidth;
+                }
+
+                this.oDiv.style.left =l+ "px";
+                this.oDiv.style.top = t + "px";
+            }
+        }
+
+    </script>
+    <style>
+        * { margin:0px; padding:0px;}
+        #div1 { width: 200px; height: 300px; position: absolute; background: #0094ff; left:20px;top:20px;}
+        #div2 { width: 200px; height: 300px; position: absolute; background: #4cff00; left: 20px; top: 20px; }
+        #div3 { width: 200px; height: 300px; position: absolute; background: #ff0000; left: 20px; top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="div1">
+     
+    </div>
+    <div id="div2">
+
+    </div>
+    <div id="div3">
+
+    </div>
+</body>
+</html>

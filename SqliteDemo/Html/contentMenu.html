@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../Scripts/move2.js"></script>
+    <script>
+        window.onload = function ()
+        {
+           
+            var oDiv = document.getElementsByTagName("div");
+
+        
+            document.onmousemove = function (ev)
+            {
+                for (var i = oDiv.length - 1 ; i > 0; i--)
+                {
+                    oDiv[i].style.left = oDiv[i - 1].offsetLeft + "px";
+                    oDiv[i].style.top = oDiv[i - 1].offsetTop + "px";
+                }
+
+                var oEvent=window.event||ev;
+                var pos=getPos(oEvent);
+                oDiv[0].style.left = pos.x + "px";
+                oDiv[0].style.top = pos.y + "px";
+
+
+             
+            }
+        }
+    </script>
+    <style>
+        div { width: 40px; height: 30px; position:absolute; background: #4cff00; }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+
+
+</body>
+</html>

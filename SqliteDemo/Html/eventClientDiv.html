@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../Scripts/move2.js"></script>
+    <script>
+        window.onload = function ()
+        {
+           
+            var oDiv = document.getElementsByTagName("div");
+
+        
+            document.oncontextmenu = function (ev)
+            {
+                var oEvent = ev || window.event;
+                var pos=getPos(oEvent);
+                oDiv[0].style.display = "block";
+                oDiv[0].style.top = pos.y + "px";
+                oDiv[0].style.left = pos.x + "px";
+                return false;
+            }
+            document.onclick = function ()
+            {
+                oDiv[0].style.display = "none";
+            }
+        }
+    </script>
+    <style>
+        div { width: 40px; height: 30px; position:absolute; background: #4cff00; }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+    </div>
+
+
+
+</body>
+</html>

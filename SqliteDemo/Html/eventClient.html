@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script>
+        window.onload = function ()
+        {
+            var oBtn = document.getElementById("btn");
+            var oDiv = document.getElementById("div1");
+            oBtn.onclick = function (event)
+            {
+                var oEvent = event || window.event;
+                oDiv.style.display = "block";
+
+                if (oEvent.stopPropagation)
+                {
+                    oEvent.stopPropagation();//IE以外
+                } else
+                {
+                    oEvent.cancelBubble = true;//IE
+                }
+
+            }
+
+            document.onclick = function (e)
+            {
+                var oEvent = e || window.event;
+                var targetNode = oEvent.target || oEvent.srcElement;
+                if (targetNode.id != "div1")oDiv.style.display = "none";
+            }
+        }
+    </script>
+    <style>
+        div { width: 400px; height: 300px; display: none; background: #4cff00; }
+    </style>
+</head>
+<body>
+
+    <input  type="button" id="btn" value="点击我"/>
+    <div id="div1">
+        222
+    </div>
+
+</body>
+</html>

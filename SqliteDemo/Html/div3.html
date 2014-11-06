@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    
+    <style>
+        div { background-color:red;  width:100px;height:50px;  margin:0;padding:0; margin:20px;}
+    </style>
+    <script>
+        window.onload = function () {
+
+            var oDiv = document.getElementsByTagName("div");
+
+            for (var i = 0; i < oDiv.length; i++) {
+                
+                oDiv[i].onmouseover = function () {
+                    startMove(this, 200);
+                };
+                oDiv[i].onmouseout = function () {
+                    startMove(this, 100);
+                };
+            }
+
+            function startMove(obj, iTarger) {
+               
+
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function () {
+                    var speed = (iTarger - obj.offsetWidth) / 6;
+                    if (speed > 0) {
+                        speed = Math.ceil(speed);
+                    } else {
+                        speed = Math.floor(speed);
+                    }
+                    if (obj.offsetWidth == iTarger) {
+                        clearInterval(obj.timer);
+                    } else {
+                        obj.style.width = obj.offsetWidth + speed + "px";
+                    }
+                }, 30);
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div></div>
+    <div></div>
+    <div></div>
+
+</body>
+</html>

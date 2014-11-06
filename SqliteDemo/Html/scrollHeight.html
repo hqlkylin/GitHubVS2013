@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <script src="../Scripts/move2.js"></script>
+    <script>
+        window.onload = function ()
+        {
+            var oDiv = document.getElementById("div1");
+            var oDiv2 = document.getElementById("div2");
+            var oDiv3 = document.getElementById("div3");
+
+            var oBox = document.getElementById("box");
+
+            var disx = 0;
+            var disy = 0;
+            oDiv.onmousedown = function (ev)
+            {
+
+
+                var oEvent = window.event || ev;
+
+                var pos = getPos(oEvent);
+
+                disx = pos.x - oDiv.offsetLeft;
+                dixy = pos.y - oDiv.offsetTop;
+
+            
+
+                document.onmousemove = function (ev)
+                {
+                    var oEvent = window.event || ev;
+                    var pos = getPos(oEvent);
+                    var l = pos.x - disx;
+                    if (l < 0)
+                    {
+                        l = 0;
+                    }
+                    if (l > oBox.offsetWidth - div1.offsetWidth)
+                    {
+                        l = oBox.offsetWidth - div1.offsetWidth;
+                    }
+
+                    oDiv.style.left = l + "px";
+                    var scale = l / (oBox.offsetWidth - div1.offsetWidth);
+                    document.title = scale;
+
+                    oDiv3.style.top = -scale * (oDiv3.offsetHeight-oDiv2.offsetHeight)+ "px";
+                
+                  
+                }
+                document.onmouseup = function ()
+                {
+                   
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+                return false;
+            }
+        }
+    </script>
+    <style>
+      
+        #box { position: relative; background: #808080; width: 820px; height: 30px; }
+        #div1 { width: 20px; height: 30px; position: absolute; background: #4cff00; }
+        #div2 { width: 300px; height: 300px; position: relative; top: 40px; overflow:hidden; }
+        #div3 { background: #ff0000; position:absolute; top:0px; border:1px solid #00ff90 }
+        
+    </style>
+</head>
+<body>
+    <div id="box">
+      
+        <div id="div1">
+         
+        </div>
+
+    </div>
+    <div id="div2">
+        <div id="div3">
+
+            火车_百度百科
+
+            火车（Train），人类的交通工具，是人类利用化石能源运输的典例。1804年，由英国的矿山技师德里维斯克利用瓦特的蒸汽机造出了世界上第一台蒸汽机车，时速为5至6...
+            其他含义: 日本宫部美雪著推理小说 佛家用语
+
+            查看“火车”全部10个含义>>
+
+            baike.baidu.com/ 2014-10-15
+            火车网:火车时刻表,火车票预订,火车票查询,网上订票,列车时刻表
+            专业的火车时刻查询,为您提供全国火车票网上订票服务.火车票查询,火车票转让轻松在线完成,让您的旅途更加愉快!买火车票,上火车网.
+            www.huoche.com.cn/ 2014-10-24
+            - 百度快照 - 80%好评
+            火车的最新相关信息
+            网友称地铁调价后坐火车更省 特定线路确实可行
+            网友称地铁调价后坐火车更省 特定线路确实可行---但考虑到从黄村火车站到北京站的列车时间段并不适合早上上班乘坐,所以只能在晚上回家乘坐火车,早上...
+            新华网  10月16日
+            3小时前 18岁少年走铁轨被过路火车吓瘫 无法行走...  大河网
+            8小时前 金坛一火车迷举办创意婚礼 座位席是20多...  扬子晚报网
+            10月17日 盘点全球6趟最浪漫的火车之旅  新华网
+            10月15日 我国普速火车将换新衣 传统绿皮车等换“...  腾讯
+            最新全国火车时刻表--最专业的火车时刻查询
+            火车时刻表,列车时刻表,网上订票,春节,春运,列车时刻表,列车时刻查询系统,交通查询,城市车次表,火车时刻表,列车时刻表,列车时刻查询系统
+            www.huoche.com.cn/sheng/ 2014-10-24
+            - 百度快照 - 80%好评
+            火车票网 - 火车票查询_火车时刻表_火车票网上订票
+            火车票网提供火车票查询,火车票网上订票,最新火车时刻表,列车时刻表查询,酒店预订,飞机票预订,火车票预订,航班查询,旅游度假信息服务.
+            www.huochepiao.com/ 2014-11-02
+            - 百度快照 - 89%好评
+
+        </div>
+    </div>
+    <img src="../Images/%e5%8c%97-%e4%ba%ac.png" />
+   
+    <img src="../Images/北-京.png" />
+</body>
+</html>

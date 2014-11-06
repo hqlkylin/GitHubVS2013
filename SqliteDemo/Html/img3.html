@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style>
+        * { margin:0;padding:0;}
+        img { opacity:0.3;}
+    </style>
+    <script>
+
+
+
+        function getStyle(obj, name) {
+
+            if (obj.currentStyle) {
+                return obj.currentStyle[name];
+            } else {
+
+                return getComputedStyle(obj, false)[name];
+            }
+        }
+        window.onload = function () {
+
+            
+            var oImg = document.getElementsByTagName("img");
+
+            for (var i = 0; i < oImg.length; i++) {
+                oImg[i].alpha = 30;
+                oImg[i].onmouseover = function () {
+                  
+                    startMove(this, 100);
+                }
+                oImg[i].onmouseout = function () {
+                    startMove(this, 30);
+                }
+            }
+
+            function startMove(obj, iTarget) {
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function () {
+                    
+                    obj.speed = (iTarget - obj.alpha) / 6;
+                    obj.speed = obj.speed > 0 ? Math.ceil(obj.speed) : Math.floor(obj.speed);
+
+                    if (iTarget == obj.alpha) {
+                        clearInterval(obj.timer);
+                    } else {
+                        obj.alpha = obj.alpha + obj.speed;
+                        obj.style.opacity = obj.alpha / 100;
+                    }
+                }, 30);
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+    <img src="../images/1.png" width="100" height="100" />
+    <img src="../images/1.png" width="100" height="100" />
+    <img src="../images/1.png" width="100" height="100" />
+    <img src="../images/1.png" width="100" height="100" />
+</body>
+</html>
